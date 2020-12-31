@@ -1,6 +1,7 @@
 import Head from 'next/head'
+import { connectToDatabase } from '../util/mongodb'
 
-export default function Home() {
+export default function Home({ isConnected }) {
   return (
     <div className="container">
       <Head>
@@ -10,8 +11,17 @@ export default function Home() {
 
       <main>
         <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to <a href="https://nextjs.org">Next.js with MongoDB!</a>
         </h1>
+
+        {isConnected ? (
+          <h2 className="subtitle">You are connected to MongoDB</h2>
+        ) : (
+          <h2 className="subtitle">
+            You are NOT connected to MongoDB. Check the <code>README.md</code>{' '}
+            for instructions.
+          </h2>
+        )}
 
         <p className="description">
           Get started by editing <code>pages/index.js</code>
@@ -124,6 +134,10 @@ export default function Home() {
           text-align: center;
         }
 
+        .subtitle {
+          font-size: 2rem;
+        }
+
         .description {
           line-height: 1.5;
           font-size: 1.5rem;
@@ -206,4 +220,14 @@ export default function Home() {
       `}</style>
     </div>
   )
+}
+
+export async function getServerSideProps(context) {
+  const { client } = await connectToDatabase()
+
+  const isConnected = await client.isConnected()
+
+  return {
+    props: { isConnected },
+  }
 }
