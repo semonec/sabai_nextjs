@@ -1,0 +1,91 @@
+.App {
+  font-family: sans-serif;
+  display: flex;
+  margin-left: 18px;
+  margin-right: 18px;
+  flex-direction: column;
+  height: 100vh;
+  margin-bottom: 40px;
+}
+.bg-placeholder {
+  background-image: url("./assets/background.svg");
+  background-repeat: no-repeat;
+  height: 531px;
+  background-size: auto 100%;
+}
+  .header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 73px;
+  }
+  .header-container .header-title {
+    font-size: 28px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.46;
+    letter-spacing: normal;
+    text-align: left;
+    color: black;
+  }
+  .header-container .header-login {
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: left;
+    color: #00589b;
+  }
+  
+  .header-description-container {
+    font-size: 22px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: left;
+    color: #939597;
+    margin-top: 10px;
+  }
+  
+  .start-button {
+    width: 100%;
+    border-radius: 12px;
+    background-color: #00589b;
+    color: white;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: center;
+  }
+  
+.terms {
+  color: #939597;
+  width: 100%;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.more {
+  color: #939597;
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+}
