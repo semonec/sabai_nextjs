@@ -1,11 +1,9 @@
 import Head from 'next/head'
 import { connectToDatabase } from '../util/mongodb'
-import { Landing } from './landing/Landing'
+import Landing from './landing/Landing'
 
 export default function Home({ isConnected }) {
-  return (
-    <Landing />
-  )
+  return <div></div>
 }
 
 export async function getServerSideProps(context) {

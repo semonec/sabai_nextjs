@@ -3,7 +3,7 @@ import { HeaderArea } from "./HeaderArea";
 import { HeaderDescription } from "./HeaderDescription";
 import { StartButton } from "./StartButton";
 
-export const Landing = () => {
+const Landing = () => {
   return (
     <div className="App">
       <div className="bg-placeholder">
@@ -53,3 +53,5 @@ export const Landing = () => {
     </div>
   );
 }
+
+export default Landing;
