@@ -5,7 +5,8 @@ const HeaderArea = () => {
     <div className="header-container">
       <div className="header-title">싸바이서비스</div>
       <div className="header-login">
-        <div>로그인</div>
+        <img className="icon-img" src="./assets/icon_my.svg" /> 
+        <div className="login">로그인</div>
       </div>
       <style jsx>{`
         .header-container {
@@ -14,7 +15,7 @@ const HeaderArea = () => {
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            margin-top: 73px;
+            margin-top: 102px;
         }
         .header-container .header-title {
             font-size: 28px;
@@ -31,10 +32,17 @@ const HeaderArea = () => {
             font-weight: bold;
             font-stretch: normal;
             font-style: normal;
-            line-height: 1.5;
             letter-spacing: normal;
             text-align: left;
             color: #00589b;
+            display: flex;
+            align-items: center;
+        }
+        .icon-img {
+          margin-right: 4px;
+        }
+        .header-login .login {
+          height: 16px;
         }
       `}
       </style>

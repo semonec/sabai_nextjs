@@ -18,7 +18,7 @@ const Landing = () => {
       <div className="more">더 알아보기</div>
       <style jsx>{`
         .App {
-            font-family: sans-serif;
+            font-family: 'Spoqa Han Sans Neo', 'sans-serif';
             display: flex;
             margin-left: 18px;
             margin-right: 18px;

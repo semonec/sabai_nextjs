@@ -5,7 +5,7 @@ export default async (req, res) => {
 
   const item = {
     time: Date.now(), 
-    data: JSON.stringify(req.body)
+    data: req.body
   };
 
   const movies = await db
