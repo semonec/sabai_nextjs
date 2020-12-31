@@ -4,7 +4,7 @@ export default async (req, res) => {
   console.log(req);
 
   const item = {
-    time: new Date.now(), 
+    time: Date.now(), 
     data: JSON.stringify(req.body)
   };
 
