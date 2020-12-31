@@ -3,7 +3,7 @@ import { HeaderArea } from "./HeaderArea";
 import { HeaderDescription } from "./HeaderDescription";
 import { StartButton } from "./StartButton";
 
-export default function Landing() {
+export const Landing = () => {
   return (
     <div className="App">
       <div className="bg-placeholder">

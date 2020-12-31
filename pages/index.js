@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { connectToDatabase } from '../util/mongodb'
-import Landing from './Landing'
+import { Landing } from './landing/Landing'
 
 export default function Home({ isConnected }) {
   return (
