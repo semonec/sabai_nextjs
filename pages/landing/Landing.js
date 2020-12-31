@@ -1,7 +1,7 @@
 import * as React from "react";
-import { HeaderArea } from "./HeaderArea";
-import { HeaderDescription } from "./HeaderDescription";
-import { StartButton } from "./StartButton";
+import HeaderArea from "./HeaderArea";
+import HeaderDescription from "./HeaderDescription";
+import StartButton from "./StartButton";
 
 const Landing = () => {
   return (

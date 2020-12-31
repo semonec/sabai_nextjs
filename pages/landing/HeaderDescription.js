@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export const HeaderDescription = () => {
+const HeaderDescription = () => {
   return (
     <div className="header-description-container">
       <span>
@@ -23,3 +23,5 @@ export const HeaderDescription = () => {
     </div>
   );
 };
+
+export default HeaderDescription;

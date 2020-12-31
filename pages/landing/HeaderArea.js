@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export const HeaderArea = () => {
+const HeaderArea = () => {
   return (
     <div className="header-container">
       <div className="header-title">싸바이서비스</div>
@@ -41,3 +41,5 @@ export const HeaderArea = () => {
     </div>
   );
 };
+
+export default HeaderArea;
