@@ -20,6 +20,7 @@ const filterCurrentList = (items) => {
     recentBase.setHours(now.getHours() -2);
     const recentMS = recentBase.getTime();
     // console.log(now, recentBase.getTime());
+    if (!items || !items.length) return [];
     return items.filter((item)=> { return item.time >= recentMS; })
 }
 
@@ -29,11 +30,11 @@ const filterPreviousList = (items) => {
     recentBase.setHours(now.getHours() -2);
     const recentMS = recentBase.getTime();
     // console.log(now, recentBase.getTime());
+    if (!items || !items.length) return [];
     return items.filter((item)=> { return item.time < recentMS; })
 }
 
 const DetailWorkoutItem = (props) => {
-    filterCurrentList([]);
     const typeConverter = (type) => {
         switch(type) {
             case 'S0':
