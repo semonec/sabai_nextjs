@@ -9,7 +9,6 @@ const MainHeader = () => {
     const [address, setAddress] = useState('경기도 성남시 분당구청');
 
     const showPosition = (position) => {
-        console.log(position);
         let geocoder = new kakao.maps.services.Geocoder();
         // geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
         geocoder.coord2RegionCode(position.coords.latitude, position.coords.longitude, (result, status)=> {

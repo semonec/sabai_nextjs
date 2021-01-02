@@ -1,21 +1,39 @@
 
-const currentItemList = [
-    {
-        type: 'S0',
-        time: 1609587322276
-    },
-    {
-        type: 'S0',
-        time: 1609587322276
-    },
-    {
-        type: 'S0',
-        time: 1609587322276
-    }
-]
+// const currentItemList = [
+//     {
+//         type: 'S0',
+//         time: 1609587322276
+//     },
+//     {
+//         type: 'S0',
+//         time: 1609587322276
+//     },
+//     {
+//         type: 'S0',
+//         time: 1609587322276
+//     }
+// ]
+
+const filterCurrentList = (items) => {
+    const now = new Date();
+    const recentBase = new Date();
+    recentBase.setHours(now.getHours() -2);
+    const recentMS = recentBase.getTime();
+    // console.log(now, recentBase.getTime());
+    return items.filter((item)=> { return item.time >= recentMS; })
+}
+
+const filterPreviousList = (items) => {
+    const now = new Date();
+    const recentBase = new Date();
+    recentBase.setHours(now.getHours() -2);
+    const recentMS = recentBase.getTime();
+    // console.log(now, recentBase.getTime());
+    return items.filter((item)=> { return item.time < recentMS; })
+}
 
 const DetailWorkoutItem = (props) => {
-    console.log(props);
+    filterCurrentList([]);
     const typeConverter = (type) => {
         switch(type) {
             case 'S0':
@@ -26,7 +44,7 @@ const DetailWorkoutItem = (props) => {
                 return '가슴 펴기';
         }
     }
-    
+    console.log(props.data.type); 
     const timeConverter = (type, isPrevious = false) => {
         const date = new Date(type);
         return !isPrevious
@@ -37,7 +55,7 @@ const DetailWorkoutItem = (props) => {
     return (
         <>
             <div className={`detail-item-container ${props.isPrevious ? 'previous': ''}`}>
-                <div>{typeConverter(props.type)}</div>
+                <div>{typeConverter(props.data.type)}</div>
                 <div>{timeConverter(props.time, props.isPrevious)}</div>
             </div>
             <style jsx>{`
@@ -67,7 +85,13 @@ const DetailWorkoutItem = (props) => {
         </>
     )
 }
-const DetailContents = ()=> {
+const DetailContents = (props)=> {
+    const { list }= props;
+    console.log(list);
+
+    const currentItemList = filterCurrentList(list);
+    const prevItemList = filterPreviousList(list);
+
     return (
         <>
             <div className='detail-container'>
@@ -77,9 +101,9 @@ const DetailContents = ()=> {
                         return <DetailWorkoutItem key={`detail-current-workout-${index}`} {...item} isPrevious={false}/>
                     })}
                 </div>
-                <div className="previous-title">지난 운동 기록 {currentItemList.length > 0 ? `(${currentItemList.length} 회)` : '없음'}</div>
+                <div className="previous-title">지난 운동 기록 {prevItemList.length > 0 ? `(${prevItemList.length} 회)` : '없음'}</div>
                 <div className="previous-list">
-                    {currentItemList.map((item, index) => {
+                    {prevItemList.map((item, index) => {
                         return <DetailWorkoutItem key={`detail-current-workout-${index}`}{...item} isPrevious={true}/>
                     })}
                 </div>

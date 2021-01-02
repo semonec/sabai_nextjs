@@ -1,14 +1,23 @@
+import axios from 'axios';
+import { useEffect, useState } from "react";
 import MainHeader from "./main/MainHeader";
 import MainTimeline from "./main/MainTimeline";
 import MainContents from "./main/MainContents";
 
 const Main = () => {
+    const [list, setList] = useState([]);
+    useEffect(() => {
+        axios.get(`/api/get`)
+            .then((response) => {
+                setList(response.data);
+            })
+    }, []);
     return (
         <div>
             <div className="main-container">
                 <MainHeader />
-                <MainTimeline />
-                <MainContents />
+                <MainTimeline list={list}/>
+                <MainContents list={list}/>
             </div>
             <style jsx>{`
                 .main-container {

@@ -1,4 +1,5 @@
 
+
 const TimeTick = (props) => {
     return (
         <div className="time-tick">
@@ -7,7 +8,7 @@ const TimeTick = (props) => {
                     width: 6px;
                     height: 4px;
                     border-radius: 64px;
-                    background-color: #f5df4d;
+                    background-color: #ffde00;
                     position: absolute;
                     left: ${props.left}%
                 }
@@ -15,11 +16,19 @@ const TimeTick = (props) => {
         </div>
     )
 }
-const MainTimeline = () => {
-    const track = [
-        {time: 6},
-        {time: 12},
-    ]
+const MainTimeline = (props) => {
+    // const track = [
+    //     {time: 6},
+    //     {time: 12},
+    // ];
+    const list = props.list;
+    const track = list.map(item => {
+        const date = new Date(item.time);
+        const hour = date.getHours();
+        const min = date.getMinutes();
+        return {time: (hour + (min/60))};
+    });
+
     return (
         <>
             <div className="timeline-container">
@@ -40,9 +49,9 @@ const MainTimeline = () => {
                     margin-top: 17px;
                     height: 4px;
                     width: 100%;
-                    opacity: 0.43;
+                    opacity: 0.73;
                     border-radius: 32px;
-                    background-image: linear-gradient(to left, #f0eee9, #f0eee9);
+                    background-color: #f0eee9;
                     position: relative;
                 }
                 .timeline-timedesc {

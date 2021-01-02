@@ -1,32 +1,55 @@
-const WorkoutItems = [
-    {
-        type: 'S0',
-        name: '숨쉬기',
-        icon: '../assets/icon_ring.svg'
-    },
-    {
-        type: 'S1',
-        name: '양손 들기',
-        icon: '../assets/icon_slope.svg'
-    },
-    {
-        type: 'S2',
-        name: '가슴 펴기',
-        icon: '../assets/icon_wing.svg'
-    },
-];
+// const WorkoutItems = [
+//     {
+//         type: 'S0',
+//         name: '숨쉬기',
+//         icon: '../assets/icon_ring.svg'
+//     },
+//     {
+//         type: 'S1',
+//         name: '양손 들기',
+//         icon: '../assets/icon_slope.svg'
+//     },
+//     {
+//         type: 'S2',
+//         name: '가슴 펴기',
+//         icon: '../assets/icon_wing.svg'
+//     },
+// ];
 
 const RecentWorkoutComponent = (props) => {
-    const { type, name, icon } = props.item;
+    const getName = (type) => {
+        switch(type) {
+            case 'S0':
+                return '숨쉬기';
+            case 'S1':
+                return '양손 들기';
+            case 'S2':
+                return '가슴 펴기';
+        }
+    }
+    const getIcon = (type) => {
+        switch(type) {
+            case 'S0':
+                return './assets/icon_ring.svg';
+            case 'S1':
+                return './assets/icon_slope.svg';
+            case 'S2':
+                return './assets/icon_wing.svg';
+        }
+    }
+    const { type, count } = props.item;
+    const name = getName(type);
+    const icon = getIcon(type);
+
     const isFirst = props.index === 0;
-    const count = 20; // TODO: get from DB.
-    const track = [
-        {time: 6},
-        {time: 12},
-    ]
+    // console.log(props, type, name, icon, count);
     const date = new Date();
+    const prev = new Date();
+    prev.setHours(prev.getHours() -2);
     const hour = date.getHours();
     const minute = date.getMinutes();
+    const max = date.getTime();
+    const min = prev.getTime();
     return (
         <div className={`recent-workout-container ${isFirst? 'isFirst': ''}`}>
             <div className="title-container">
@@ -108,7 +131,48 @@ const RecentWorkoutComponent = (props) => {
     )
 }
 const RecentContents = (props)=> {
-    const workoutElem = WorkoutItems.map((item, index) => {
+    const list = props.list;
+    const s0 = [];
+    const s1 = [];
+    const s2 = [];
+
+    const now = new Date();
+    const recentBase = new Date();
+    recentBase.setHours(now.getHours() -2);
+    const recentMS = recentBase.getTime();
+    list.forEach(item => {
+        const time = item.data.time;
+        switch(item.data.type) {
+            case 'S0':
+                item.time && item.time >= recentMS && s0.push(item);
+                break;
+            case 'S1':
+                item.time && item.time >= recentMS && s1.push(item);
+                break;
+            case 'S2':
+                item.time && item.time >= recentMS && s2.push(item);
+                break;
+        } 
+    });
+    
+    const items = [
+        {
+            count: s0.length,
+            type: 'S0',
+            raw: s0
+        },
+        {
+            count: s1.length,
+            type: 'S1',
+            raw: s1
+        },
+        {
+            count: s2.length,
+            type: 'S2',
+            raw: s2
+        }
+    ];
+    const workoutElem = items.map((item, index) => {
         return <RecentWorkoutComponent key={`workout-component-${index}`} item={item} index={index}/>;
     });
     return (

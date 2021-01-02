@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RecentContents from "./RecentContents";
 import DetailContents from "./DetailContents";
 
-const MainContents = ()=> {
-    const [selectedTab, setSelectTab] = useState(1); 
-    console.log(selectedTab);
+const MainContents = (props)=> {
+    const [selectedTab, setSelectTab] = useState(0); 
+    const list = props.list;
+
     return (
         <>
             <div className="contents-tab">
@@ -16,8 +17,8 @@ const MainContents = ()=> {
                 </div>
             </div>
             <div className="contents-container">
-                {(selectedTab === 0) && <RecentContents goDetail={() => setSelectTab(1)}/>}
-                {(selectedTab === 1) && <DetailContents />}
+                {(selectedTab === 0) && <RecentContents goDetail={() => setSelectTab(1)} list={list}/>}
+                {(selectedTab === 1) && <DetailContents list={list} />}
             </div>
             <style jsx>{`
                 .contents-tab {
