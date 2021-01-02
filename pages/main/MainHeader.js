@@ -6,13 +6,17 @@ const MainHeader = () => {
     const year = date.getFullYear(); 
     const month = new String(date.getMonth()+1); 
     const day = new String(date.getDate()); 
-    const [address, setAddress] = useState('주소를 확인할 수 없습니다');
+    const [address, setAddress] = useState('경기도 성남시 분당구청');
 
     const showPosition = (position) => {
         console.log(position);
         let geocoder = new kakao.maps.services.Geocoder();
         // geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
-        geocoder.coord2RegionCode(position.coords.latitude, position.coords.longitude, (addr)=> setAddress(addr));         
+        geocoder.coord2RegionCode(position.coords.latitude, position.coords.longitude, (result, status)=> {
+            if (status === kakao.maps.services.Status.OK) {
+                setAddress(result[0].address_name);
+            }
+        });
 
     }
     useEffect(() => {

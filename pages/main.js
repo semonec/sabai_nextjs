@@ -1,3 +1,4 @@
+import { MainContents } from "./main/MainContents";
 import MainHeader from "./main/MainHeader";
 import MainTimeline from "./main/MainTimeline";
 
@@ -7,6 +8,7 @@ const Main = () => {
             <div className="main-container">
                 <MainHeader />
                 <MainTimeline />
+                <MainContents />
             </div>
             <style jsx>{`
                 .main-container {

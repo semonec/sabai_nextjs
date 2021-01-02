@@ -1,6 +1,5 @@
 
 const TimeTick = (props) => {
-    console.log(props.index);
     return (
         <div className="time-tick">
             <style jsx>{`
@@ -22,11 +21,20 @@ const MainTimeline = () => {
         {time: 12},
     ]
     return (
-        <div className="timeline-container">
-            {track.map((item, index) => {
-                const left = item.time/24 * 100;
-                return <TimeTick key={`ticker-${index}`}left={left} index={index}/>
-            })}
+        <>
+            <div className="timeline-container">
+                {track.map((item, index) => {
+                    const left = item.time/24 * 100;
+                    return <TimeTick key={`ticker-${index}`}left={left} index={index}/>
+                })}
+            </div>
+            <div className="timeline-timedesc">
+                <div></div>
+                <div>6:00</div>
+                <div>12:00</div>
+                <div>18:00</div>
+                <div></div>
+            </div>
             <style jsx>{`
                 .timeline-container {
                     margin-top: 17px;
@@ -37,9 +45,25 @@ const MainTimeline = () => {
                     background-image: linear-gradient(to left, #f0eee9, #f0eee9);
                     position: relative;
                 }
+                .timeline-timedesc {
+                    margin-top: 
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between; 
+                }
+                .timeline-timedesc  div {
+                    color: #939597;
+                    font-size: 14px;
+                    font-weight: normal;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: 1.43;
+                    width: 30px;
+                    text-align: center
+                }
             `}</style>
-        </div>
-    )
+        </>
+    );
 }
 
 export default MainTimeline;
