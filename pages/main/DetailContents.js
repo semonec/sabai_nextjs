@@ -21,7 +21,10 @@ const filterCurrentList = (items) => {
     const recentMS = recentBase.getTime();
     // console.log(now, recentBase.getTime());
     if (!items || !items.length) return [];
-    return items.filter((item)=> { return item.time >= recentMS; })
+
+    return items
+        .filter((item)=> { return item.time >= recentMS; })
+        .sort((a,b) => b.time - a.time);
 }
 
 const filterPreviousList = (items) => {
@@ -31,7 +34,9 @@ const filterPreviousList = (items) => {
     const recentMS = recentBase.getTime();
     // console.log(now, recentBase.getTime());
     if (!items || !items.length) return [];
-    return items.filter((item)=> { return item.time < recentMS; })
+    return items
+        .filter((item)=> { return item.time < recentMS; })
+        .sort((a,b) => b.time - a.time);
 }
 
 const DetailWorkoutItem = (props) => {
@@ -45,7 +50,6 @@ const DetailWorkoutItem = (props) => {
                 return '가슴 펴기';
         }
     }
-    console.log(props.data.type); 
     const timeConverter = (type, isPrevious = false) => {
         const date = new Date(type);
         return !isPrevious
@@ -88,7 +92,6 @@ const DetailWorkoutItem = (props) => {
 }
 const DetailContents = (props)=> {
     const { list }= props;
-    console.log(list);
 
     const currentItemList = filterCurrentList(list);
     const prevItemList = filterPreviousList(list);
