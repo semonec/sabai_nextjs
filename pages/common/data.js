@@ -1,5 +1,5 @@
 
-export const WorkoutItems = [
+const WorkoutItems = [
     {
         type: 'S0',
         name: '맨몸운동 - 숨쉬기',
@@ -15,4 +15,6 @@ export const WorkoutItems = [
         name: '맨몸운동 - 가슴 펴기',
         icon: ''
     },
-]
+];
+
+export default WorkoutItems;

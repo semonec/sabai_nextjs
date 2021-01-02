@@ -1,4 +1,4 @@
-import { WorkoutItems } from '../common/data';
+import WorkoutItems from '../common/data';
 
 const RecentWorkoutComponent = (props) => {
     const { type, name, icon } = props.item;

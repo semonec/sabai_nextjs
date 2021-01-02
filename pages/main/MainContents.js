@@ -1,6 +1,6 @@
 import { useState } from "react";
-import DetailContents from "./DetailContents";
 import RecentContents from "./RecentContents";
+import DetailContents from "./DetailContents";
 
 const MainContents = ()=> {
     const [selectedTab, setSelectTab] = useState(0); 
