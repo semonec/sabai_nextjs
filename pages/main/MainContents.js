@@ -3,7 +3,7 @@ import RecentContents from "./RecentContents";
 import DetailContents from "./DetailContents";
 
 const MainContents = ()=> {
-    const [selectedTab, setSelectTab] = useState(0); 
+    const [selectedTab, setSelectTab] = useState(1); 
     console.log(selectedTab);
     return (
         <>

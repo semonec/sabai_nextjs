@@ -1,7 +1,111 @@
 
+const currentItemList = [
+    {
+        type: 'S0',
+        time: 1609587322276
+    },
+    {
+        type: 'S0',
+        time: 1609587322276
+    },
+    {
+        type: 'S0',
+        time: 1609587322276
+    }
+]
+
+const DetailWorkoutItem = (props) => {
+    console.log(props);
+    const typeConverter = (type) => {
+        switch(type) {
+            case 'S0':
+                return '숨쉬기';
+            case 'S1':
+                return '양손 들기';
+            case 'S2':
+                return '가슴 펴기';
+        }
+    }
+    
+    const timeConverter = (type, isPrevious = false) => {
+        const date = new Date(type);
+        return !isPrevious
+            ?`${date.getHours()}:${date.getMinutes()}`
+            :`${date.getFullYear()}년 ${date.getMonth()+1}월${date.getDate()}일  ${date.getHours()}:${date.getMinutes()}`
+    }
+
+    return (
+        <>
+            <div className={`detail-item-container ${props.isPrevious ? 'previous': ''}`}>
+                <div>{typeConverter(props.type)}</div>
+                <div>{timeConverter(props.time, props.isPrevious)}</div>
+            </div>
+            <style jsx>{`
+                .detail-item-container {
+                    width: 100%;
+                    height: 68px;
+                    font-size: 16px;
+                    font-weight: bold;
+                    display: flex;
+                    justify-content: space-between;
+                    background-color: #f5df4d;
+                    align-items: center;
+                    margin-bottom: 7px;
+                    border-radius: 6px;
+                }
+                .detail-item-container.previous {
+                    background-color: #d5d5d5;
+                    font-weight: normal;
+                    font-size: 14px;
+                    height: 60px;
+                }
+                .detail-item-container div {
+                    margin-left: 15px;
+                    margin-right: 15px;
+                }
+            `}</style>
+        </>
+    )
+}
 const DetailContents = ()=> {
     return (
-        <div>자세</div>
+        <>
+            <div className='detail-container'>
+                <div className="current-title">최근 운동 감지됨 {currentItemList.length > 0 ? `(${currentItemList.length} 회)` : '없음'}</div>
+                <div className="current-list">
+                    {currentItemList.map((item, index) => {
+                        return <DetailWorkoutItem key={`detail-current-workout-${index}`} {...item} isPrevious={false}/>
+                    })}
+                </div>
+                <div className="previous-title">지난 운동 기록 {currentItemList.length > 0 ? `(${currentItemList.length} 회)` : '없음'}</div>
+                <div className="previous-list">
+                    {currentItemList.map((item, index) => {
+                        return <DetailWorkoutItem key={`detail-current-workout-${index}`}{...item} isPrevious={true}/>
+                    })}
+                </div>
+            </div>
+            <style jsx>{`
+                .detail-container {
+                    display: flex;
+                    flex-direction: column;
+                }
+                .detail-container .current-title,
+                .detail-container .previous-title {
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+                .detail-container .previous-title {
+                    margin-top: 26px;
+                }
+                .detail-container .current-list,
+                .detail-container .previous-list {
+
+                    height: 150px;
+                    overflow-y: auto;
+                    margin-top: 8px;
+                }
+            `}</style>
+        </>
     );
 }
 
