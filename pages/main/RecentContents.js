@@ -31,7 +31,7 @@ const RecentWorkoutComponent = (props) => {
         </div>
     )
 }
-export const RecentContents = ()=> {
+const RecentContents = ()=> {
     const workoutElem = WorkoutItems.map((item, index) => {
         return <RecentWorkoutComponent key={`workout-component-${index}`} item={item} index={index}/>;
     });
@@ -50,3 +50,5 @@ export const RecentContents = ()=> {
         </>
     );
 }
+
+export default RecentContents;

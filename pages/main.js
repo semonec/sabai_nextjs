@@ -1,6 +1,6 @@
-import { MainContents } from "./main/MainContents";
 import MainHeader from "./main/MainHeader";
 import MainTimeline from "./main/MainTimeline";
+import MainContents from "./main/MainContents";
 
 const Main = () => {
     return (

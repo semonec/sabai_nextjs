@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { DetailContents } from "./DetailContents";
-import { RecentContents } from "./RecentContents";
+import DetailContents from "./DetailContents";
+import RecentContents from "./RecentContents";
 
-export const MainContents = ()=> {
+const MainContents = ()=> {
     const [selectedTab, setSelectTab] = useState(0); 
     console.log(selectedTab);
     return (
@@ -56,3 +56,5 @@ export const MainContents = ()=> {
         </>
     );
 }
+
+export default MainContents;
