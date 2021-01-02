@@ -1,21 +1,23 @@
-// const WorkoutItems = [
-//     {
-//         type: 'S0',
-//         name: '숨쉬기',
-//         icon: '../assets/icon_ring.svg'
-//     },
-//     {
-//         type: 'S1',
-//         name: '양손 들기',
-//         icon: '../assets/icon_slope.svg'
-//     },
-//     {
-//         type: 'S2',
-//         name: '가슴 펴기',
-//         icon: '../assets/icon_wing.svg'
-//     },
-// ];
-
+const RecentTimeTick = (props) => {
+    return (
+        <div className={`time-tick ${props.isFirst? 'latest': ''}`}>
+            <style jsx>{`
+                .time-tick {
+                    width: 14px;
+                    height: 14px;
+                    border-radius: 50%;
+                    background-color: #939597;
+                    position: absolute;
+                    left: ${props.left}%
+                }
+                .latest {
+                    background-color: #00589b;
+                    opacity: 0.4;
+                }
+            `}</style>
+        </div>
+    )
+}
 const RecentWorkoutComponent = (props) => {
     const getName = (type) => {
         switch(type) {
@@ -50,6 +52,14 @@ const RecentWorkoutComponent = (props) => {
     const minute = date.getMinutes();
     const max = date.getTime();
     const min = prev.getTime();
+
+    const raw = (props?.item?.raw) || [];
+
+    const track = raw.map(item => {
+        return { left: (item.time - min) / (max - min) * 100};
+    });
+    console.log(track);
+
     return (
         <div className={`recent-workout-container ${isFirst? 'isFirst': ''}`}>
             <div className="title-container">
@@ -61,6 +71,9 @@ const RecentWorkoutComponent = (props) => {
                 <div className="postfix">회</div>
             </div>
             <div className="recent-timeline">
+                {track.map((item, index) => {
+                    return <RecentTimeTick key={`ticker-${index}`} left={item.left} isFirst={props.index === 0} />
+                })}
             </div>
             <div className="recent-timeline-desc">
                 <div>{Math.max(hour-2,0)}:{minute}</div>
@@ -115,6 +128,8 @@ const RecentWorkoutComponent = (props) => {
                     border-radius: 64px;
                     background-color: #f0eee9;
                     position: relative;
+                    display: flex;
+                    align-items: center;
                 }
                 .recent-timeline-desc {
                     display: flex;
