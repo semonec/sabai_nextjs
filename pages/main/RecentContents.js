@@ -131,7 +131,7 @@ const RecentWorkoutComponent = (props) => {
     )
 }
 const RecentContents = (props)=> {
-    const list = props.list;
+    const list = (props && props.list) || [];
     const s0 = [];
     const s1 = [];
     const s2 = [];
