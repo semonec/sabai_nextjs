@@ -21,7 +21,7 @@ const MainTimeline = (props) => {
     //     {time: 6},
     //     {time: 12},
     // ];
-    const list = props.list;
+    const list = (props && props.list) || [];
     const track = list.map(item => {
         const date = new Date(item.time);
         const hour = date.getHours();
