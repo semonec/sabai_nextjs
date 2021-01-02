@@ -16,7 +16,7 @@ const MainContents = ()=> {
                 </div>
             </div>
             <div className="contents-container">
-                {(selectedTab === 0) && <RecentContents />}
+                {(selectedTab === 0) && <RecentContents goDetail={() => setSelectTab(1)}/>}
                 {(selectedTab === 1) && <DetailContents />}
             </div>
             <style jsx>{`
