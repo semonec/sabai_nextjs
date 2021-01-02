@@ -1,13 +1,28 @@
+import { useEffect, useState } from "react";
+
+
 const MainHeader = () => {
     const date = new Date(); 
     const year = date.getFullYear(); 
     const month = new String(date.getMonth()+1); 
     const day = new String(date.getDate()); 
+    const [address, setAddress] = useState('주소를 확인할 수 없습니다');
 
+    const showPosition = (position) => {
+        console.log(position);
+        let geocoder = new kakao.maps.services.Geocoder();
+        // geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
+        geocoder.coord2RegionCode(position.coords.latitude, position.coords.longitude, (addr)=> setAddress(addr));         
 
+    }
+    useEffect(() => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+          }
+    }, []);
     return (
         <div className="main-header-container">
-            <div className="main-header-title">싸바이 서비스 - 성남시 분당구 복지센터 앞</div>
+            <div className="main-header-title">싸바이 서비스 - {address}</div>
             <div className="main-header-slot">
                 <div>{year}년 {month}월 {day}일</div>
                 <div className="login-container">        

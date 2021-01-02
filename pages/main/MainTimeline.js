@@ -1,5 +1,6 @@
 
 const TimeTick = (props) => {
+    console.log(props.index);
     return (
         <div className="time-tick">
             <style jsx>{`
@@ -22,9 +23,9 @@ const MainTimeline = () => {
     ]
     return (
         <div className="timeline-container">
-            {track.map(item => {
+            {track.map((item, index) => {
                 const left = item.time/24 * 100;
-                return <TimeTick left={left}/>
+                return <TimeTick key={`ticker-${index}`}left={left} index={index}/>
             })}
             <style jsx>{`
                 .timeline-container {

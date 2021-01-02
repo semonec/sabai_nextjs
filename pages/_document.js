@@ -11,6 +11,7 @@ class MyDocument extends Document {
         <Html>
           <Head>
             <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css' />
+            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8227ed1eceee9b70de533998a277fb4a&libraries=services"></script>
           </Head>
           <body>
             <Main />
